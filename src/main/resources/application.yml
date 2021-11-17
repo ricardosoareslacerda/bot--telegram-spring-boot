@@ -1,0 +1,25 @@
+server.port: 5000
+
+spring:
+  application:
+    name: bot--telegram
+  profiles:
+    default: local
+
+logging:
+  pattern:
+    dateformat: dd-MM-yyyy HH:mm:ss.SSS
+  level:
+    root: WARN
+    org.zalando.logbook: TRACE
+    br.com.fiap.SCJ.bottelegramspringboot: TRACE
+
+bot:
+  username: JarvisFIAP_bot
+  token: ${BOT_TOKEN}
+
+service:
+  exchange:
+    urlExchangeToday: https://economia.awesomeapi.com.br/json/last/{coinCodeFrom}-{coinCodeTo}
+    defaultCoinCodeFrom: USD
+    defaultCoinCodeTo: BRL
