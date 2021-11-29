@@ -22,6 +22,8 @@ Assistente pessoal para Telegram.
   - comando clima atual
   - comando previsão do tempo
   - comando calculo de expressão matemática
+  - comando reverte texto
+  - comando codifica texto
 
 ## Comandos disponíveis
 
