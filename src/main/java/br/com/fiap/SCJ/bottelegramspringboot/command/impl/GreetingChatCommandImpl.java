@@ -15,8 +15,10 @@ public class GreetingChatCommandImpl implements ChatCommand {
     }
 
     @Override
-    public String execute(Update update) {
+    public String execute(Update update, String param) {
+
         return String.format("Olá %s!", update.getMessage().getFrom().getFirstName());
+
     }
 
 }

@@ -6,6 +6,6 @@ public interface ChatCommand {
 
     String comando();
 
-    String execute(Update update);
+    String execute(Update update, String param);
 
 }

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 import java.math.RoundingMode;
+import java.text.DecimalFormat;
 
 @Service
 @RequiredArgsConstructor
@@ -23,11 +24,16 @@ public class ExchangeTodayChatCommandImpl implements ChatCommand {
     }
 
     @Override
-    public String execute(Update update) {
+    public String execute(Update update, String param) {
 
         ExchangeTodayOutput exchangeTodayOutput = exchangeService.exchangeToday(new ExchangeTodayInput());
 
-        return exchangeTodayOutput.getValue().setScale(2, RoundingMode.HALF_UP).toPlainString();
+        String exchangeFormatted = exchangeTodayOutput
+                .getValue()
+                .setScale(2, RoundingMode.HALF_UP)
+                .toPlainString();
+
+        return String.format("1.00 USD\n%s BRL", exchangeFormatted);
 
     }
 
