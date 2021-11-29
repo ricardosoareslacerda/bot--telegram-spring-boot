@@ -1,16 +1,15 @@
 package br.com.fiap.SCJ.bottelegramspringboot.command.impl;
 
 import br.com.fiap.SCJ.bottelegramspringboot.command.ChatCommand;
-import org.mariuszgromada.math.mxparser.Expression;
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 import java.util.Objects;
 
 @Service
-public class MathParserChatCommandImpl implements ChatCommand {
+public class ReverseTextChatCommandImpl implements ChatCommand {
 
-    private static final String COMANDO = "calc";
+    private static final String COMANDO = "reverso";
 
     @Override
     public String comando() {
@@ -21,12 +20,12 @@ public class MathParserChatCommandImpl implements ChatCommand {
     public String execute(Update update, String param) {
 
         if (Objects.isNull(param) || param.isBlank()) {
-            return "Por favor utilize uma expressão matemática válida";
+            return "Por favor informe um texto válido";
         }
 
-        Expression expression = new Expression(param);
-
-        return String.format("Resultado: %.2f", expression.calculate());
+        StringBuilder sb = new StringBuilder(param);
+        sb.reverse();
+        return sb.toString();
 
     }
 

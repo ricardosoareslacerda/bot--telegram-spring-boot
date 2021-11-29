@@ -38,20 +38,32 @@ Obtém a cotação atual do dólar
 > 1.00 USD<br>
 > 5.61 BRL
 
-### /clima
+### /clima {cidade}
 
 TODO
 > /clima<br>
 > TODO
 
-### /previsao-tempo
+### /previsao-tempo {cidade}
 
 TODO
 > /clima<br>
 > TODO
 
-### /calc
+### /calc {expressao}
 
 Obtém o resultado de uma expressão matemática
 > /calc 5*5+5-1<br>
 > Resultado: 29.00
+
+### /reverso {texto}
+
+Inverte o texto
+> /reverso elefante<br>
+> etnafele
+
+### /codificar {texto}
+
+Codifica em base 64 o texto
+> /codificar texto<br>
+> dGV4dG8=
