@@ -11,7 +11,7 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 public class ForecastChatCommandImpl implements ChatCommand {
 
     private final WeatherService weatherAPIService;
-    private static final String COMANDO = "previsao";
+    private static final String COMANDO = "previsao_tempo";
 
     @Override
     public String comando() {
