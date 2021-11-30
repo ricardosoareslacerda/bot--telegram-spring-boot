@@ -4,10 +4,6 @@ import br.com.fiap.SCJ.bottelegramspringboot.config.property.WeatherServicePrope
 import br.com.fiap.SCJ.bottelegramspringboot.service.WeatherService;
 import br.com.fiap.SCJ.bottelegramspringboot.service.impl.data.output.ForecastResponse;
 import br.com.fiap.SCJ.bottelegramspringboot.service.impl.data.output.WeatherResponse;
-import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -35,11 +31,11 @@ public class WeatherServiceImpl implements WeatherService {
     public String weather(String city) {
         ResponseEntity<WeatherResponse> responseEntity = null;
         try {
-            responseEntity = restTemplate.exchange(url.toURI().toString().concat(properties.getFirstKey()).concat(properties.getFields_weather()),
-                                                                                                 HttpMethod.GET,
-                                                                                                 new HttpEntity<>(new HttpHeaders()),
-                                                                                                 new ParameterizedTypeReference<>() {},
-                                                                                                 city);
+            responseEntity = restTemplate.getForEntity(url.toURI().toString().
+                                                       concat(properties.getFirstKey()).
+                                                       concat(properties.getFields_weather()).
+                                                       concat(city),
+                                                       WeatherResponse.class);
         }
         catch (URISyntaxException e) {
             e.printStackTrace();
@@ -55,11 +51,11 @@ public class WeatherServiceImpl implements WeatherService {
     public String forecast(String city) {
         ResponseEntity<ForecastResponse> responseEntity = null;
         try {
-            responseEntity = restTemplate.exchange(url.toURI().toString().concat(properties.getSecondKey()).concat(properties.getFields_forecast()),
-                                                                                                 HttpMethod.GET,
-                                                                                                 new HttpEntity<>(new HttpHeaders()),
-                                                                                                 new ParameterizedTypeReference<>() {},
-                                                                                                 city);
+            responseEntity = restTemplate.getForEntity(url.toURI().toString().
+                                                       concat(properties.getSecondKey()).
+                                                       concat(properties.getFields_forecast()).
+                                                       concat(city),
+                                                       ForecastResponse.class);
         }
         catch (URISyntaxException e) {
             e.printStackTrace();

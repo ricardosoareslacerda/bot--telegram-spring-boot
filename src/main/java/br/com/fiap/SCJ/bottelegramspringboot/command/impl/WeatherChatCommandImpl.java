@@ -22,7 +22,7 @@ public class WeatherChatCommandImpl implements ChatCommand {
     }
 
     @Override
-    public String execute(Update update, String city) {
+    public String execute(Update update, final String city) {
         return weatherAPIService.weather(city);
     }
 }

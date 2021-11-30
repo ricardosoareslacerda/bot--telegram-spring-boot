@@ -48,7 +48,7 @@ public class WeatherResponse {
     @JsonProperty("condition_slug")
     private String condition_slug;
 
-    private enum CONDITION {
+    enum CONDITION {
         STORM("storm", "Tempestade"),
         SNOW("snow", "Neve"),
         HAIL("hail", "Granizo"),
@@ -85,17 +85,18 @@ public class WeatherResponse {
     }
 
     public String toString() {
-        StringBuilder toString = new StringBuilder();
-        toString.append("Cidade: {0} \n");
-        toString.append("Data: {1} \n");
-        toString.append("Temperatura: {2}º C \n");
-        toString.append("Clima: {3} \n");
-        toString.append("Umidade atual: {4, number}% \n");
-        toString.append("Velocidade do vento em: {5} \n");
-        toString.append("Nascer do sol: {6} \n");
-        toString.append("Pôr do sol: {7} \n");
-        toString.append("Tempo atual: {8} \n");
+        StringBuilder output = new StringBuilder();
+        output.append("**--------- Clima ---------** \n");
+        output.append("Cidade: {0} \n");
+        output.append("Data: {1} \n");
+        output.append("Temperatura: {2}º C \n");
+        output.append("Clima: {3} \n");
+        output.append("Umidade atual: {4, number}% \n");
+        output.append("Velocidade do vento em: {5} \n");
+        output.append("Nascer do sol: {6} \n");
+        output.append("Pôr do sol: {7} \n");
+        output.append("Tempo atual: {8} \n");
 
-        return MessageFormat.format(toString.toString(), city, date, temp, descriptionCondition, humidity, wind_speedy, sunrise, sunset, CONDITION.from(condition_slug));
+        return MessageFormat.format(output.toString(), city, date, temp, descriptionCondition, humidity, wind_speedy, sunrise, sunset, CONDITION.from(condition_slug));
     }
 }

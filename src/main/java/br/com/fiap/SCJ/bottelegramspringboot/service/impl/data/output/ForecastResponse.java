@@ -9,6 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.text.MessageFormat;
+import java.util.List;
 
 @Data
 @Builder
@@ -27,6 +28,9 @@ public class ForecastResponse {
     @JsonProperty("city")
     private String city;
 
+    @JsonProperty("forecast")
+    private List<ForecastResponse> forecast;
+
     @JsonProperty("weekday")
     private String weekday;
 
@@ -40,11 +44,29 @@ public class ForecastResponse {
     private String condition;
 
     public String toString() {
-        StringBuilder toString = new StringBuilder();
-        toString.append("Cidade: {0} \n");
-        toString.append("Data: {1} \n");
-        toString.append("Clima: {2} \n");
+        StringBuilder outputReturn = new StringBuilder();
+        outputReturn.append("Cidade: {0} \n");
+        outputReturn.append("Data: {1} \n");
+        outputReturn.append("Clima: {2} \n \n");
+        outputReturn = new StringBuilder(MessageFormat.format(outputReturn.toString(), city, date, descriptionCondition));
 
-        return MessageFormat.format(toString.toString(), city, date, descriptionCondition);
+        outputReturn.append(" **--------- Previsão ---------** \n ");
+        for (ForecastResponse forecastResponse : forecast) {
+            StringBuilder forecastOutput = new StringBuilder();
+            forecastOutput.append("Dia: {0} \n");
+            forecastOutput.append("Data: {1} \n");
+            forecastOutput.append("Máxima Temperatura: {2}º C \n");
+            forecastOutput.append("Mínima Temperatura: {3}º C \n");
+            forecastOutput.append("Condição {4} \n");
+            forecastOutput.append("------------- \n \n");
+            outputReturn.append(MessageFormat.format(forecastOutput.toString(),
+                                                                    forecastResponse.getWeekday(),
+                                                                    forecastResponse.getDate(),
+                                                                    forecastResponse.getMax(),
+                                                                    forecastResponse.getMin(),
+                                                                    WeatherResponse.CONDITION.from(forecastResponse.getCondition())));
+        }
+
+        return outputReturn.toString();
     }
 }
