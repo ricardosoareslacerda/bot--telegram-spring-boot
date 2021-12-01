@@ -6,9 +6,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
-import java.io.IOException;
-import java.net.URISyntaxException;
-
 @Service
 @RequiredArgsConstructor
 public class WeatherChatCommandImpl implements ChatCommand {
